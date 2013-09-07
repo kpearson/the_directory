@@ -1,5 +1,5 @@
 class BusinessesController < ApplicationController
-	before_action :authenticate_user!, [:new, :create]
+	# before_action :authenticate_user!, [:new, :create]
 	def index
 		@business = Business.all
 	end
@@ -13,10 +13,11 @@ class BusinessesController < ApplicationController
 	end
 
 	def new
-		@busness = Business.new
+		@business = Business.new
 	end
 
 	def search
-		@business = Business.search_for params[:q]
+		@business = Business.find_by name: :q
+		@categories = Categories.find_by name: :q
 	end
 end
