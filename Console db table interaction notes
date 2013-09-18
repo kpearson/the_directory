@@ -1,0 +1,7 @@
+
+
+c = Category.new name: "Electronics"
+
+b = Business.find_by name: "ROC"
+
+b.categories << c
