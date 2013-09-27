@@ -1,7 +1,7 @@
 class BusinessesController < ApplicationController
 	# before_action :authenticate_user!, [:new, :create]
 	def index
-		@business = Business.all
+		@business = Business
 	end
 
 	def show
@@ -9,7 +9,7 @@ class BusinessesController < ApplicationController
 	end
 
 	def create
-		@business = curent_user.businesses.build
+		@business = curent_user.business.build
 	end
 
 	def new
