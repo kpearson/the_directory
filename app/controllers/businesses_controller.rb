@@ -18,6 +18,6 @@ class BusinessesController < ApplicationController
 
 	def search
 		@business = Business.find_by name: :q
-		@categories = Categories.find_by name: :q
+		@category = Category.find_by name: :q
 	end
 end
