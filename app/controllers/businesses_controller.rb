@@ -5,7 +5,7 @@ class BusinessesController < ApplicationController
 	end
 
 	def show
-		@business = Business.find_by params[:id]
+		@business = Business.find(params[:id])
 	end
 
 	def create
@@ -14,6 +14,7 @@ class BusinessesController < ApplicationController
 			redirect_to "/business/#{@business.id}"
 		else
 			render :new
+		end
 	end
 
 	def new
