@@ -22,7 +22,8 @@ class BusinessesController < ApplicationController
 
 	def update
 		@business = Business.find(params[:id])
-		
+		if @business.save
+			redirect_to "/businesses/#{@business.id}"		
 	end
 
 	def search
