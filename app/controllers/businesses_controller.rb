@@ -9,7 +9,11 @@ class BusinessesController < ApplicationController
 	end
 
 	def create
-		@business = curent_user.business.build
+		@business = Business.new(business_params)
+		if @business.save
+			redirect_to "/business/#{@business.id}"
+		else
+			render :new
 	end
 
 	def new
@@ -25,7 +29,7 @@ class BusinessesController < ApplicationController
 		if @business.save(business_params)
 			redirect_to "/businesses/#{@business.id}"
 		else
-			render :new
+			render :edit
 		end
 	end
 
