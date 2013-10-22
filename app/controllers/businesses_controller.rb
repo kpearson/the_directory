@@ -22,7 +22,7 @@ class BusinessesController < ApplicationController
 
 	def update
 		@business = Business.find(params[:id])
-		if @business.save
+		if @business.save(business_params)
 			redirect_to "/businesses/#{@business.id}"
 		else
 			render :new
@@ -32,5 +32,11 @@ class BusinessesController < ApplicationController
 	def search
 		@business = Business.find_by name: :q
 		@category = Category.find_by name: :q
+	end
+
+	private
+
+	def business_params
+		params.require(:business).permit(:name, :suite, :occupied, :user_id, :building_id)
 	end
 end
