@@ -20,6 +20,11 @@ class BusinessesController < ApplicationController
 		@business = Business.find(params[:id])
 	end
 
+	def update
+		@business = Business.find(params[:id])
+		
+	end
+
 	def search
 		@business = Business.find_by name: :q
 		@category = Category.find_by name: :q
