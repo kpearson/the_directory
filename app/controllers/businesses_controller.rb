@@ -23,7 +23,10 @@ class BusinessesController < ApplicationController
 	def update
 		@business = Business.find(params[:id])
 		if @business.save
-			redirect_to "/businesses/#{@business.id}"		
+			redirect_to "/businesses/#{@business.id}"
+		else
+			render :new
+		end
 	end
 
 	def search
