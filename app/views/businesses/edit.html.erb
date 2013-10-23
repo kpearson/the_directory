@@ -1,2 +1,2 @@
-<h1>Edit <%= "#{@business.name}" %></h1>
+<h1><%= link_to "#{@business.name}", "/businesses/#{@business.id}" %></h1>
 <%= render "inputForm" %>

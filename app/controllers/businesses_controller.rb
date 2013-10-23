@@ -27,7 +27,7 @@ class BusinessesController < ApplicationController
 
 	def update
 		@business = Business.find(params[:id])
-		if @business.save(business_params)
+		if @business.update(business_params)
 			redirect_to "/businesses/#{@business.id}"
 		else
 			render :edit
@@ -42,6 +42,6 @@ class BusinessesController < ApplicationController
 	private
 
 	def business_params
-		params.require(:business).permit(:name, :suite, :occupied, :user_id, :building_id)
+		params.require(:business).permit(:name, :suite, :occupied, :user_id, :building_id, :discription)
 	end
 end

@@ -4,7 +4,8 @@
 <br>
 <ul>
 	<% @businesses.each do |b| %>
-		<li><%= link_to(b.name, "/businesses/#{b.id}") %></li>
+		<li><%= link_to(b.name, "/businesses/#{b.id}") %><br>
+			<%= b.discription %></li>
 	<% end %>
 </ul>
 <br>
