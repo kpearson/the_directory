@@ -2,6 +2,7 @@ class BusinessesController < ApplicationController
 	before_action :authenticate_user!, :only => [:new, :create]
 	def index
 		@businesses = Business.all
+		@categories = Category.all
 	end
 
 	def show
@@ -10,6 +11,7 @@ class BusinessesController < ApplicationController
 
 	def create
 		@business = Business.new(business_params)
+		@category = Category.businesses
 		if @business.save
 			redirect_to "/business/#{@business.id}"
 		else
