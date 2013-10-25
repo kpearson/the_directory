@@ -1,7 +1,6 @@
 
 <h1><%= @business.name %></h1>
-<p><%= @business.discription %></p>
-
-<% if user_signed_in? %>
-	<p><%= link_to "Edit", "/businesses/#{@business.id}/edit" %></p>
-<% end %>
+ <p><%= @business.discription %></p>
+ <p><% if user_signed_in? %>
+	  	<%= link_to "Edit", "/businesses/#{@business.id}/edit" %>
+  	<% end %></p>

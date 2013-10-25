@@ -1,11 +1,12 @@
 <h1>Welcome</h1>
-<p>Search for a business by name or category.</p>
-	<%= 'search' %>
 <br>
 <ul>
-	<% @businesses.each do |b| %>
-		<li><%= link_to(b.name, "/businesses/#{b.id}") %><br>
-			<%= b.discription %></li>
+	<% @categories.each do |c| %>
+		<%= c.name %>
+		<% @businesses.each do |b| %>
+			<ul><%= link_to(b.name, "/businesses/#{b.id}") %></ul>
+		<% end %>
+		<br>
 	<% end %>
 </ul>
 <br>

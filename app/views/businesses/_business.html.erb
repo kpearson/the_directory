@@ -1,7 +1,7 @@
 <article>
   <li>
   <header>
-    <%= link_to business.name %>
+    <%= link_to business.name, "/businesses/#{@business.id}" %>
   </header>
   <p>Category: <%= business.categories%></p>
   </li>
