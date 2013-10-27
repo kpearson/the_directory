@@ -11,16 +11,25 @@ class BusinessesController < ApplicationController
 
 	def create
 		@business = Business.new(business_params)
-		@category = Category.businesses
+		@category_b = Category.businesses
 		if @business.save
 			redirect_to "/business/#{@business.id}"
 		else
 			render :new
 		end
+
+		@category = Category.new
+		if @category.save
+			redirect_to "/business/#{@category.id}"
+		else
+			render :new
+		end
+
 	end
 
 	def new
 		@business = Business.new
+		@category_b = Category.new
 	end
 
 	def edit
