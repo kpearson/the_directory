@@ -9,27 +9,17 @@ class BusinessesController < ApplicationController
 		@business = Business.find(params[:id])
 	end
 
+	def new
+		@business = Business.new
+	end
+
 	def create
 		@business = Business.new(business_params)
-		@category_b = Category.businesses
 		if @business.save
 			redirect_to "/business/#{@business.id}"
 		else
 			render :new
 		end
-
-		@category = Category.new
-		if @category.save
-			redirect_to "/business/#{@category.id}"
-		else
-			render :new
-		end
-
-	end
-
-	def new
-		@business = Business.new
-		@category_b = Category.new
 	end
 
 	def edit
@@ -55,4 +45,5 @@ class BusinessesController < ApplicationController
 	def business_params
 		params.require(:business).permit(:name, :suite, :occupied, :user_id, :building_id, :discription)
 	end
+
 end

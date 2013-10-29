@@ -1,14 +1,15 @@
 <ul>
-	<% @categories_b.each do |c| %>
+	<% @categories.each do |c| %>
 		<%= c.name %>
 		<% @businesses.each do |b| %>
 			<ul><%= link_to(b.name, "/businesses/#{b.id}") %><br>
 					<%= b.discription %></ul>
 		<% end %>
-		<br>
-		<% if user_signed_in? %>
-				<%= link_to "New", new_business_path %>
-		<% end %>
 	<% end %>
+		<br>
+	<% if current_user.try(:admin?) %>
+			<%= link_to "New", new_business_path %>
+	<% end %>
+
 </ul>
 <br>
