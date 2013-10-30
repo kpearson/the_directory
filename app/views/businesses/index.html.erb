@@ -1,7 +1,7 @@
 <ul>
 	<% @categories.each do |c| %>
 		<%= c.name %>
-		<% @businesses.each do |b| %>
+		<% c.businesses.each do |b| %>
 			<ul><%= link_to(b.name, "/businesses/#{b.id}") %><br>
 					<%= b.discription %></ul>
 		<% end %>

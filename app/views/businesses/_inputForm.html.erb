@@ -8,18 +8,19 @@
 <% end %>
 
 
-<%= form_for @business do |b| %>
+<%= simple_form_for @business do |f| %>
 	<p>
-	<%= b.label :Name %>
-	<%= b.text_field :name %>
+	<%= f.label :Name %>
+	<%= f.text_field :name %>
 	</p>
 	<p>
-	<%= b.label :Discription %>
-	<%= b.text_area :discription %>
+	<%= f.label :Discription %>
+	<%= f.text_area :discription %>
 	</p>
-	<%= b.submit %>
+	<%= f.submit %>
 <% end %>
-
+<br>
+<br>
 <% if current_user.try(:admin?) %>
 	<h3>Add a new category.</h3>
 	<%= form_for @category do |c| %>

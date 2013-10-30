@@ -11,6 +11,7 @@ class BusinessesController < ApplicationController
 
 	def new
 		@business = Business.new
+		@category = Category.new
 	end
 
 	def create
@@ -24,6 +25,7 @@ class BusinessesController < ApplicationController
 
 	def edit
 		@business = Business.find(params[:id])
+		@category = Business.find(params[:id])
 	end
 
 	def update
@@ -33,6 +35,12 @@ class BusinessesController < ApplicationController
 		else
 			render :edit
 		end
+	end
+
+	def delete
+		@business = Business.find(params[:id])
+		@business.destroy
+		
 	end
 
 	def search

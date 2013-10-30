@@ -7,7 +7,7 @@ class CategoriesController < ApplicationController
 	def create
 		@category = Category.new(category_params)
 		if @category.save
-			redirect_to "/category/#{@category.id}"
+			redirect_to "/categories/#{@category.id}"
 		else
 			render :new
 		end
@@ -28,7 +28,6 @@ class CategoriesController < ApplicationController
 
 	def show
 		@category = Category.find(params[:id])
-		
 	end
 
 	private
