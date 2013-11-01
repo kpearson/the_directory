@@ -1,6 +1,6 @@
 <ul>
 	<% @categories.each do |c| %>
-		<%= c.name %>
+		<%= c.name.upcase %>
 		<% c.businesses.each do |b| %>
 			<ul><%= link_to(b.name, "/businesses/#{b.id}") %><br>
 					<%= b.discription %></ul>
