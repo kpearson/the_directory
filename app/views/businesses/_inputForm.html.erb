@@ -18,7 +18,8 @@
 	<%= f.text_area :discription %>
 	</p>
 	<p>
-	<%= f.association :categories, as: :check_boxes, collection: Category.all(order: 'name'), prompt: "Choose Categories" %>
+	<%= f.association :categories do %>
+	<%= f.select :category, Category.all as: :check_boxes, prompt: "Choose Categories" %>
 	</p>
 	<%= f.submit %>
 <% end %>
