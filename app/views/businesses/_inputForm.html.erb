@@ -29,7 +29,7 @@
 <br>
 <% if current_user.try(:admin?) %>
 	<h3>Add a new category.</h3>
-	<%= form_for @category do |c| %>
+	<%= form_for ([@business, @business.categories.build]) do |c| %>
 		<p>
 		<%= c.label :Name %>
 		<%= c.text_field :name %>

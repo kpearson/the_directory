@@ -1,9 +1,10 @@
 TheDirectory::Application.routes.draw do
   root :to => "businesses#index"
   devise_for :users
-  resources :businesses
+  resources :businesses do
+	  resources :categories
+	end
   resources :buildings
-  resources :categories
 
   get 'search', to: 'businesses#search'
  

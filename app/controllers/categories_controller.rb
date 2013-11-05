@@ -5,12 +5,9 @@ class CategoriesController < ApplicationController
 	end
 
 	def create
-		@category = Category.new(category_params)
-		if @category.save
-			redirect_to "/categories/#{@category.id}"
-		else
-			render :new
-		end
+		@business = Business.find(params[:business_id])
+		@category = @business.categories.create(category_params)
+		redirect_to business_path(@business)
 	end
 
 	def edit

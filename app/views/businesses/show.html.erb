@@ -1,15 +1,21 @@
-
 <h1><%= @business.name %></h1>
 <p>
 <%= @business.discription %>
 </p>
-<p>
-<% if user_signed_in? %>
-	<%= link_to "Edit", "/businesses/#{@business.id}/edit" %>
-<% end %>
+<p> Categories
+	<% @business.categories.each do |c| %>
+		<ul>
+			<li><%= c.name %></li>
+		</ul>
+	<% end %>
 </p>
 <p>
-<% if current_user.try(:admin?) %>
-	<%= link_to "Remove", "/businesses/#{@business.id}/delete" %>
-<% end %>
+	<% if user_signed_in? %>
+		<%= link_to "Edit", "/businesses/#{@business.id}/edit" %>
+	<% end %>
+||
+	<% if current_user.try(:admin?) %>
+		<%= link_to "Remove", "/businesses/#{@business.id}/delete" %>
+	<% end %>
 </p>
+ 
