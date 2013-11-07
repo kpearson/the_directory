@@ -15,12 +15,9 @@ class CategoriesController < ApplicationController
 	end
 
 	def update
-		@category = Category.find(paramd[:id])
-		if @category.update(business_params)
-			redirect_to "/categories/#{@category.id}"
-		else
-			render :edit
-		end
+		@business = Business.find(params[:business_id])
+		@category = @business.categories.update(category_params)
+		redirect_to business_path(@business)
 	end
 
 	def show

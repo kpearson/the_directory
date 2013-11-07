@@ -1,13 +1,11 @@
-<ul>
 	<% @categories.each do |c| %>
 		<ul><%= c.name.upcase %></ul>
 		<% c.businesses.each do |b| %>
-			<ul><%= link_to(b.name, "/businesses/#{b.id}") %></ul>
+			<ul><ul><li><%= link_to(b.name, "/businesses/#{b.id}") %><br><br></li></ul></ul>
 		<% end %>
 	<% end %>
 		<br>
 	<% if current_user.try(:admin?) %>
 			<%= link_to "Add a New Business", new_business_path %>
 	<% end %>
-</ul>
 <br>

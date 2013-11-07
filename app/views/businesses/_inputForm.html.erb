@@ -10,26 +10,24 @@
 
 <%= simple_form_for @business do |f| %>
 	<p>
-	<%= f.label :Name %>
-	<%= f.text_field :name %>
+		<%= f.label :Name %>
+		<%= f.text_field :name %>
 	</p>
 	<p>
-	<%= f.label :Discription %>
-	<%= f.text_area :discription %>
+		<%= f.label :Discription %>
+		<%= f.text_area :discription %>
 	</p>
 	<p>
-	<%= f.label :Categories %>
-	<ul>
+		<%= f.label :Categories %>
 	<%= f.association :categories, as: :check_boxes %>
-	</ul>
 	</p>
-	<%= f.submit %>
+		<%= f.submit %>
 <% end %>
 <br>
 <br>
 <% if current_user.try(:admin?) %>
 	<h3>Add a new category.</h3>
-	<%= form_for ([@business, @business.categories.build]) do |c| %>
+	<%= form_for([@business, @business.categories.build]) do |c| %>
 		<p>
 		<%= c.label :Name %>
 		<%= c.text_field :name %>
