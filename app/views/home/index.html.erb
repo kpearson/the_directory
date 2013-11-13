@@ -1,2 +1,26 @@
-<h1>Welcome</h1>
-<p>May you never lose your way in this ever changing world.</p>
+<br><br>
+
+<table class="table table-striped">
+	<tbody>
+		
+		<% @categories.each do |c| %>
+		<tr><td><%= c.name.upcase %>
+			<% c.businesses.each do |b| %>
+				<li><%= link_to(b.name, "/businesses/#{b.id}") %>
+					<% if b.phone_num? %>
+						<br>Phone: <%= b.phone_num %>
+					<% end %>
+					<% if b.web_site? %>
+						<br>Website: <%= b.web_site %><br><br></li>
+					<% end %>
+			<% end %></td></tr>
+		<% end %>
+
+		<br>
+
+		<% if current_user.try(:admin?) %>
+				<%= link_to "Add a New Business", new_business_path %>
+		<% end %>
+		
+	</tbody>
+</table>

@@ -26,6 +26,7 @@ class BusinessesController < ApplicationController
 	def edit
 		@business = Business.find(params[:id])
 		@category = Business.find(params[:id])
+		@categories = Category.all
 	end
 
 	def update
@@ -48,10 +49,14 @@ class BusinessesController < ApplicationController
 		@category = Category.find_by name: :q
 	end
 
+	def list
+		@business = Business.all
+	end
+
 	private
 
 	def business_params
-		params.require(:business).permit(:name, :suite, :occupied, :user_id, :building_id, :discription)
+		params.require(:business).permit(:name, :suite, :occupied, :user_id, :building_id, :discription, :phone_num, :web_site)
 	end
 
 end

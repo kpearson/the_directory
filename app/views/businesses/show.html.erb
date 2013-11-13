@@ -1,7 +1,20 @@
+<br><br>
+
+
 <h1><%= @business.name %></h1>
 <p>
 <%= @business.discription %>
 </p>
+<% if @business.phone_num? %>
+	<p>
+	Phone: <%= @business.phone_num %>
+	</p>
+<% end %>
+<% if @business.web_site? %>
+	<p>
+	Website: <%= @business.web_site %>
+	</p>
+<% end %>
 <p> Categories
 	<% @business.categories.each do |c| %>
 		<ul>
@@ -13,9 +26,9 @@
 	<% if user_signed_in? %>
 		<%= link_to "Edit", "/businesses/#{@business.id}/edit" %>
 	<% end %>
-||
+
 	<% if current_user.try(:admin?) %>
-		<%= link_to "Remove", "/businesses/#{@business.id}/delete" %>
+		|| <%= link_to "Remove", "/businesses/#{@business.id}/delete" %>
 	<% end %>
 </p>
  

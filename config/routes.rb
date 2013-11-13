@@ -1,6 +1,9 @@
 TheDirectory::Application.routes.draw do
-  root :to => "businesses#index"
+  root :to => "home#index"
   devise_for :users
+  resources :home
+	get 'businesses/list', to: 'businesses#list'
+	get 'categories/list', to: 'categories#list'
   resources :businesses do
 	  resources :categories
 	end
