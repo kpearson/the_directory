@@ -37,6 +37,8 @@ gem 'pry-rails'
 
 gem 'newrelic_rpm'
 
+gem 'activeadmin', github: 'gregbell/active_admin'
+
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
