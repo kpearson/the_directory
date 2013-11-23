@@ -68,26 +68,5 @@
 		</div>
 	</div>
 
-	<% if current_user.try(:admin?) %>
-		<div class="col-lg-4 col-lg-offset-1">
-		  <form class="bs-example">
-		    <div class="form-group">
-					<legend>Add a new category</legend>
-					<%= simple_form_for([@business, @business.categories.build]) do |c| %>
-	        <div class="form-group">
-						<%= c.label :Name, class: "col-lg-2 control-label" %>
-						<div class="col-lg-10">
-							<%= c.text_field :name, class: "form-control" %>
-						</div>
-					</div>
-	        <div class="form-group">
-						<div class="col-lg-10 col-lg-offset-2">
-							<%= c.submit class: "btn btn-default"%>
-						</div>
-					</div>
-					<% end %>
-		    </div>
-		  </form>
-		</div>
-	<% end %>
+
 </div>

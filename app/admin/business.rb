@@ -2,7 +2,7 @@ ActiveAdmin.register Business do
   index do
     column :name
     column "Contact Name" do |business|
-      business.user
+      business.user.name
     end
     column :suite
     column :phone_num
