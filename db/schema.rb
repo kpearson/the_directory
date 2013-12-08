@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131114182540) do
+ActiveRecord::Schema.define(version: 20131208183013) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,9 @@ ActiveRecord::Schema.define(version: 20131114182540) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "roles"
+    t.string   "name"
+    t.integer  "business_id"
   end
 
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
@@ -61,16 +64,17 @@ ActiveRecord::Schema.define(version: 20131114182540) do
   create_table "businesses", force: true do |t|
     t.string   "name"
     t.integer  "suite"
-    t.boolean  "occupied"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "floor"
     t.integer  "user_id"
     t.integer  "building_id"
     t.text     "discription"
     t.string   "phone_num"
     t.string   "web_site"
+    t.integer  "admin_user_id"
   end
+
+  add_index "businesses", ["admin_user_id"], name: "index_businesses_on_admin_user_id", using: :btree
 
   create_table "businesses_categories", id: false, force: true do |t|
     t.integer "business_id"
