@@ -180,7 +180,7 @@ ActiveAdmin.setup do |config|
   #
     # config.namespace :admin do |admin|
     #   admin.build_menu :utility_navigation do |menu|
-    #     menu.add label: "#{active_admin.current_user.email}", url: "http://www.mygreatwebsite.com", html_options: { target: :blank }
+    #     menu.add label: current_admin_user.email, url: "http://www.mygreatwebsite.com", html_options: { target: :blank }
     #     admin.add_logout_button_to_menu menu
     #   end
     # end

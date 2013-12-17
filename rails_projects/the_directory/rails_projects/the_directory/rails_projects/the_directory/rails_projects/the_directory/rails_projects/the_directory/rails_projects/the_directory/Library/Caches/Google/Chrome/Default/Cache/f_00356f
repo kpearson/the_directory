@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html>
+<head><script type="text/javascript">var NREUMQ=NREUMQ||[];NREUMQ.push(["mark","firstbyte",new Date().getTime()]);</script>
+<meta charset='utf-8'>
+<meta content='Wizpert' name='title'>
+<meta content='Wizpert is the everyday advice platform that instantly connects you with an expert for a 1-on-1 chat on any topic.' name='description'>
+<meta content='advise, ask me, available, blog, call me, click to call, coach, contact, counsel, expert, exercise advice, fans, get paid, health advice, help, language practice, life coaching, live chat, make money, monetize, nutrition advice, online meeting, parenting advice, phone, real-time, relationship advice, share knowledge, skype, talk, teach, tutor, wizpert, work advice, health, addiction, living with illness, startup, ER Accelerator' name='keywords'>
+<title>Wizpert - Chat</title>
+<meta content="authenticity_token" name="csrf-param" />
+<meta content="tev3E9yup2WvABTFpdgL7w6yNOfVGYcigl1eCv6yeF8=" name="csrf-token" />
+<script>
+  //<![CDATA[
+    (function(_,e,rr,s){_errs=[s];var c=_.onerror;_.onerror=function(){var a=arguments;_errs.push(a);
+    c&&c.apply(this,a)};var b=function(){var c=e.createElement(rr),b=e.getElementsByTagName(rr)[0];
+    c.src="//beacon.errorception.com/"+s+".js";c.async=!0;b.parentNode.insertBefore(c,b)};
+    _.addEventListener?_.addEventListener("load",b,!1):_.attachEvent("onload",b)})
+    (window,document,"script","51ff6e6a5f732b1119000197");
+  //]]>
+</script>
+
+<script src="https://wizpert.com/faye/faye-browser-min.js" type="text/javascript"></script>
+<script src="/assets/jquery-fefe3ee4a4f50a9a7ed0ab8b891ddaa9.js" type="text/javascript"></script>
+<script>
+  //<![CDATA[
+    $(document).ready(function(){
+      var brutal_close_checker = setTimeout(function(){
+        page = $("#current_page").text();
+        $.ajax({
+          type: "GET",
+          dataType: "script",
+          url: "/chat/sessions/brutal_close?guid=5f323950139c63a&page=" + page
+        });
+      }, 15000);
+    })
+  //]]>
+</script>
+
+
+<link href="/assets/v5_chat-2241f426676587a3f541192e55064a4d.css" media="screen" rel="stylesheet" type="text/css" />
+<script src="/assets/jquery-fefe3ee4a4f50a9a7ed0ab8b891ddaa9.js" type="text/javascript"></script>
+<!-- /= render "shared/airbrake" -->
+<script src="/assets/typekit-357affc8461404938e9c80b29f9f6a9f.js" type="text/javascript"></script>
+<script charset='utf-8' type='text/javascript'>try{Typekit.load();}catch(e){}</script>
+
+<!-- /= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js" -->
+<script charset='utf-8' type='text/javascript'>
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script charset='utf-8' type='text/javascript'>
+try{
+var pageTracker = _gat._getTracker("UA-20106498-1");
+pageTracker._setDomainName("none");
+pageTracker._trackPageview('/chat/sessions/cd87f3c6ea1b612?topic_slug=ruby-programming&beta_key=programmingstack_rails_us&marketing_type=StackOverflow&vertical=Programming');
+} catch(err) {}
+</script>
+<script charset='utf-8' type='text/javascript'>
+try{ pageTracker._setCustomVar(1, 'BetaKey', 'programmingstack_rails_us', 1); } catch(err) {}
+</script>
+<script charset='utf-8' type='text/javascript'>
+try{
+pageTracker._setCustomVar(1, 'MarketingType', 'StackOverflow', 1);
+} catch(err) {}
+</script>
+<script charset='utf-8' type='text/javascript'>
+try{
+pageTracker._setCustomVar(1, 'Vertical', 'Programming', 1);
+} catch(err) {}
+</script>
+
+<!--[if lt IE 9]>
+<script>
+  //<![CDATA[
+    document.createElement('header');
+    document.createElement('nav');
+    document.createElement('section');
+    document.createElement('article');
+    document.createElement('aside');
+    document.createElement('footer');
+    document.createElement('hgroup');
+  //]]>
+</script>
+<link href="/assets/ie-cb5a7d47548b069b6cc7f5d650cf8137.css" media="screen" rel="stylesheet" type="text/css" />
+<script src="/assets/ie-aceb0f04c9e27f9432adefe54b56290f.js" type="text/javascript"></script>
+<![endif]-->
+<!--[if lt IE 8]>
+<script src="https://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE8.js" type="text/javascript"></script>
+<link href="/assets/ie-cb5a7d47548b069b6cc7f5d650cf8137.css" media="screen" rel="stylesheet" type="text/css" />
+<script src="/assets/ie-aceb0f04c9e27f9432adefe54b56290f.js" type="text/javascript"></script>
+<![endif]-->
+
+<script src="/assets/application-d838be03a3d4dc63cd84dc07eb222186.js" type="text/javascript"></script>
+<script>
+  //<![CDATA[
+    window.faye_client = null;
+    $(document).ready(function(){
+      try {
+        window.faye_client = new Faye.Client("https://wizpert.com/faye", { timeout: 40, retry: 16 });
+      } catch(err) {}
+    });
+    var chat_timeout_value = "21600" * 1000;
+  //]]>
+</script>
+
+<script>
+  //<![CDATA[
+    function init_faye(){
+    
+      try { clearInterval(faye_auto_retry) } catch(err) {}
+      poll_url("/issues_faye/?connected=1&page=" + window.location.pathname);
+    
+      subscribe_to_faye_channel("cd87f3c6ea1b612");
+      // testing ...
+      faye_client.publish("", 'var test=1;');
+      faye_client.bind('transport:down', function() {
+        poll_url("/chat/sessions/64544/status_faye_client?status=off&user_type=user");
+      });
+    
+      faye_client.bind('transport:up', function() {
+        poll_url("/chat/sessions/64544/status_faye_client?status=on&user_type=user");
+      });
+    }
+  //]]>
+</script>
+
+<script>
+  //<![CDATA[
+    $(document).ready(function(){
+      if (!(faye_client)){
+        retries = 0;
+        window.faye_auto_retry = setInterval(function(){
+          if (retries == 3){
+            try { clearInterval(faye_auto_retry) } catch(err) {}
+          } else {
+            if (faye_client){
+              init_faye();
+            } else {
+              try {
+    
+                faye_script_src = "https://wizpert.com/faye/faye-browser-min.js";
+                el              = document.createElement('script');
+                el.async        = false;
+                el.src          = faye_script_src;
+                el.type         = 'text/javascript';
+                (document.getElementsByTagName('HEAD')[0]||document.body).appendChild(el);
+    
+                window.faye_client = new Faye.Client("https://wizpert.com/faye", { timeout: 40, retry: 16 });
+    
+              } catch(err) {}
+              retries = retries + 1;
+              poll_url("https://wizpert.com/issues_faye/?page=" + window.location.pathname);
+            }
+          }
+        }, 3000);
+      } else {
+        init_faye();
+      }
+    
+    });
+  //]]>
+</script>
+
+
+<script src='https://cdn.firebase.com/v0/firebase.js' type='text/javascript'></script>
+<script src="/assets/syntax-988d77863d4e4ebd6b06d03e5eb7f82d.js" type="text/javascript"></script>
+</head>
+<body onload='prettyPrint();'>
+<script>
+  //<![CDATA[
+    var _kiq = _kiq || [];
+  //]]>
+</script>
+<script async='true' src='//s3.amazonaws.com/ki.js/16961/3dE.js' type='text/javascript'></script>
+<script charset='utf-8' type='text/javascript'>_kiq.push(['identify', 'kitpearson@me.com']);</script>
+<div id='header'>
+<div class='wrapper'>
+<div class='notification_pane'></div>
+<div class='logo' style='display: inline-block;'></div>
+<div class='nav_bar_pic'><img src='//d20i4x3ol1vz2n.cloudfront.net/user_profile_pictures/10721/small/d4b0039b99cacdbafee903680675a5d296be0000.jpeg?1385195653' alt='Kit' style='width:31px;height:31px;box-shadow: 0px 0px 3px #884700; border-radius: 5px;' /></div>
+<a class='coins_box ajax_get' href='/get_coins?request_id=147327'>
+<div class='balance'>10</div>
+<span class='promo'>9d:22h</span>
+</a>
+<div class='nav_links'>
+<span id='get_more_coins'><a href="/get_coins?request_id=147327" class="ajax_get">Get more coins</a></span>
+</div>
+</div>
+</div>
+<script>
+  //<![CDATA[
+    $(document).ready(function(){
+      $("#body_container").css('box-shadow', '0px 12px 20px 0px #000');
+      $("#body_container").css('-moz-box-shadow', '0px 12px 20px 0px #000');
+      $("#body_container").css('-webkit-box-shadow', '0px 12px 20px 0px #000');
+      $("#body_container").css('-o-box-shadow', '0px 12px 20px 0px #000');
+    
+      $("#get_more_coins a").click(function(e){
+        // do not show loading for middle click
+        if(e.which == 2) {
+        }else{
+          $(this).prepend('<span class="loading" style="position:absolute;margin-left:-19px;"><img align="top" alt="Loading_icon_small" src="/assets/loading_icon_small-95610256776d4354016864f4b8bb4801.gif"/></span>');
+        }
+      });
+    });
+  //]]>
+</script>
+
+<script>
+  //<![CDATA[
+    $(document).ready(function(){
+      // The tooltip for the header coin balance on the chat
+      $("a.coins_box").hover(function () {
+        $(".user_coin_bar").append("<div class='new_tooltip_hover promo_tooltip_chat_hover'><p>10 of your 10 coins are promotional.</p><p>You have <span class=''>9d:22h</span> left to use them before they expire. Note: purchased coins do not expire.</p></div>");
+        }, function () { $(".new_tooltip_hover.promo_tooltip_chat_hover").remove(); });
+    });
+  //]]>
+</script>
+
+<script>
+  //<![CDATA[
+    $(document).ready(function(){
+      try { subscribe_user_coin_balance_to_faye("22305"); } catch(err) {}
+      $(".nav_links a").click(function(){ $.facebox.settings.inited = false });
+    });
+  //]]>
+</script>
+
+<script>
+  //<![CDATA[
+    $(document).ready(function(){
+      try { subscribe_user_to_site_online_presence("22305"); } catch(err) {}
+    });
+  //]]>
+</script>
+
+
+<script src="/assets/jquery-history-7e48e55252acd16bf2a4f44f8513af2a.js" type="text/javascript"></script>
+<script>
+  //<![CDATA[
+    $(document).ready(function(){
+      $.address.value("a");
+      if (is_webkit()){
+        try { // try-catch is to prevent compilation errors for non-webkit
+          // we need two of these to fix a Safari 5 issue.
+          path = window.location.pathname + window.location.search
+          History.pushState(null, "Wizpert", path + "#show");
+          History.pushState(null, "Wizpert", path);
+        } catch(err) {}
+      }
+    });
+  //]]>
+</script>
+<script>
+  //<![CDATA[
+    $(document).ready(function(){
+      subscribe_user_coin_balance_to_faye("22305");
+    });
+  //]]>
+</script>
+
+<script>
+  //<![CDATA[
+    chat_type = "user";
+    $(document).ready(function(){
+      connection_availability_check("5f323950139c63a", false);
+      submit_chat_form("user");
+      start_ui_checker("5f323950139c63a");
+      track_chat_leave("/trackings/chat_leave?chat_id=64544&user_type=user");
+    });
+  //]]>
+</script>
+
+<script>
+  //<![CDATA[
+    $(document).ready(function(){
+      chat_subscription.callback(function() {
+        poll_url("/chat/sessions/5f323950139c63a/participant_ready?p=user&request_id=147327");
+      });
+    });
+  //]]>
+</script>
+
+<div class='hide'>
+<div id='person_name'>Kit</div>
+<div id='exp_nwindow'>true</div>
+<div id='new_chat_window'>true</div>
+<div id='current_page'>user_chat</div>
+<div id='code_sharing_id'>5f323950139c63a</div>
+<div id='code_sharing_syntax'>ruby</div>
+<div id='expert_id'>9598</div>
+<div id='request_id'>147327</div>
+<div id='trial_fee'>75</div>
+<div id='trial'>true</div>
+<div id='chat_guid'>5f323950139c63a</div>
+<div id='user_chat_guid'>cd87f3c6ea1b612</div>
+<div id='enable_inchat_likes'>false</div>
+</div>
+<div class='wrapper main_content' style='margin-left:auto;'>
+<div class='user_coin_bar acceptable_select_area' id='coin_bar_area'></div>
+<div class='expert_card user_chat acceptable_select_area'>
+<div class='top_info details' style='display:none;'>
+<div class='card_stat' id='preferred_stat_id'>
+<div class='plus_one_preferred'>+1</div>
+<div class='preferred_number'>&nbsp;15</div>
+<div class='number_label'>PREFERRED</div>
+</div>
+<div class='card_stat' id='helped_stat_id'>
+<div class='plus_one_helped'>+1</div>
+<div class='helped_number'>&nbsp;17</div>
+<div class='number_label'>HELPED</div>
+</div>
+<img src='//d20i4x3ol1vz2n.cloudfront.net/user_profile_pictures/3639/small/3dec730fa59d71a893ae26ad0fb46c8afa2cd4ba.jpeg?1364496194' alt='John' style='width:88px;height:88px;border: 1px solid #dcdcdc; border-radius: 3px; float: left; margin-right:10px; ' />
+<div class='preferred_star' style=''>&nbsp;</div>
+<div class='name'>John</div>
+<div class='expertise'><span class='wizpert_label'>WIZPERT</span> in<br>Ruby Programming</div>
+<div class='tagline'>Professional software engineer - mainly in C and C++ for embedded Linux systems, but I also know some Java, Python and Lisp. No problem is too small!</div>
+</div>
+</div>
+<div class='acceptable_select_area' id='topic_bg' style='background:url(/assets/project/topics/large/technology-16131ccd0011000605c455f1d0d7357a.jpg);'></div>
+<div id='inchat_giving_area'>
+</div>
+<div class='user_chat_bar acceptable_select_area' id='chat_bar_top'>
+<div class='inchat_reward' style='display:none;'>
+<div class='inchat_reward_general'>
+Rewarding is optional, but satisfied users generally thank John with a <span class='coin_pay_small'>500</span> reward.
+</div>
+</div>
+</div>
+<script src="/assets/code_sharing-7e73ed76fa50f68d30157ebff13e303d.js" type="text/javascript"></script>
+<div class='acceptable_select_area user_programming' id='code_editing_area' style='position:relative;'>
+<a class='expand_code_sharing' href='/chat/sessions/5f323950139c63a/expand_code_sharing?from=cd87f3c6ea1b612' style='display: inline; background-color: white; padding: 18px; position: absolute; right: 1px; border-left: 1px solid #eee; border-bottom: 1px solid #eee; top: 0px; z-index: 99;'>
+<img alt="Window_open_grey" src="/assets/window_open_grey-96b9078c37062da7aa572932ab190811.png" />
+</a>
+<a class='code_sharing_back hide' href='#' style='background-color: white; padding: 18px; position: absolute; right: 1px; border-left: 1px solid #eee; border-bottom: 1px solid #eee; top: 0px; z-index: 99;'>
+<img alt="Window_close_grey" src="/assets/window_close_grey-3bd8173bda2f31fc6d7ae54fd16c81ea.png" />
+</a>
+<div id='firepad_container'></div>
+</div>
+
+<div class='acceptable_select_area chat_container chatbox user_programming'></div>
+<div class='typing_container user_programming'>
+<div class='is_typing hide'>John is typing...</div>
+</div>
+<div class='sendbox' id='chat_bar_bottom'>
+<div id='chat_bar_bottom_first'></div>
+<div id='selected_text'>
+<div class='comment_lines'></div>
+</div>
+<form accept-charset="UTF-8" action="https://wizpert.com/chat/messages" id="chat_conversation" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="tev3E9yup2WvABTFpdgL7w6yNOfVGYcigl1eCv6yeF8=" /></div>
+<span class='chat_profile_picture'>
+<img src='//d20i4x3ol1vz2n.cloudfront.net/user_profile_pictures/10721/small/d4b0039b99cacdbafee903680675a5d296be0000.jpeg?1385195653' alt='Kit' style='width:31px;height:31px;border: 1px solid #a9a9a9; border-radius: 3px;' />
+</span>
+<textarea class="sendarea user_chat_input" id="user_chat_sendarea" name="message"></textarea>
+<input id="chat_session_id" name="chat_session_id" type="hidden" value="64544" />
+<input id="sender_type" name="sender_type" type="hidden" value="user" />
+<input id="js_uuid" name="js_uuid" type="hidden" />
+<input id="line_numbers" name="line_numbers" type="hidden" value="" />
+<input id="code" name="code" type="hidden" value="" />
+<input id="code_sharing" name="code_sharing" type="hidden" value="" />
+<a class='button code_brackets in_chat' href='#' oncontextmenu='return false;' style='margin-top:0px;' title='Insert code'>{ }</a>
+<a class='button gray in_chat send send_message_button' href='#' oncontextmenu='return false;'>Send</a>
+<a href="#" class="button red end_chat in_chat gray" id="chat_close_button" oncontextmenu="return false;">End Chat</a>
+<div class='hide' id='back_arrow_end_chat'></div>
+<script>
+  //<![CDATA[
+    $(document).ready(function(){
+      moveCursorToEnd(document.getElementById("user_chat_sendarea"));
+      $("#user_chat_sendarea").autosize();
+    });
+    
+    function moveCursorToEnd(el) {
+      if (typeof el.selectionStart == "number") {
+        el.selectionStart = el.selectionEnd = el.value.length;
+      } else if (typeof el.createTextRange != "undefined") {
+        el.focus();
+        var range = el.createTextRange();
+        range.collapse(false);
+        range.select();
+      }
+    }
+    
+    $(".code_brackets").bind("click", function(e){
+      e.preventDefault();
+    
+      var textArea = $(".sendarea");
+      var len      = textArea.val().length;
+      var start    = textArea[0].selectionStart;
+      var end      = textArea[0].selectionEnd;
+    
+      var selectedText = textArea.val().substring(start, end);
+      if (selectedText.length == 0) {
+        selectedText = " insert your code here "
+      }
+      var replacement  = "[code]" + selectedText + "[/code]";
+      textArea.val(textArea.val().substring(0, start) + replacement + textArea.val().substring(end, len));
+    
+    });
+  //]]>
+</script>
+</form>
+
+
+</div>
+<script>
+  //<![CDATA[
+    $(document).ready(function(){
+    
+      chat_page = true;
+      $.address.value("chat"); // Add this to history so we can trigger the back button action.
+    
+      // The alert message from the confirmation box when the back button is clicked.
+      window.leave_site_alert_message    = "Doing this will close the chat.";
+      window.back_arrow_page_tracker_url = "https://wizpert.com/page_trackers/back_arrow_hit?request_id=147327";
+    
+      $("#back_arrow_end_chat").click(function(){
+        user_chat_close_todo("147327", $("#chat_close_button"));
+      });
+    
+      $(".card_stat#preferred_stat_id").hover(function () {
+        $('.preferred_number').prepend("<div class='new_tooltip_hover stat_tooltip_hover user_chat_tooltip'><p><span class='preferred_icon_tooltip'>&nbsp;</span> 15 users prefer this<br><span class='second_line'>wizpert</span></p></div>"); }, function () { $(".new_tooltip_hover.stat_tooltip_hover").remove();});
+    
+      $(".card_stat#helped_stat_id").hover(function () {
+        $('.helped_number').prepend("<div class='new_tooltip_hover stat_tooltip_hover user_chat_tooltip'><p><span class='helped_icon_tooltip'>&nbsp;</span> 17 users found this<br><span class='second_line'>wizpert helpful</span></p></div>"); }, function () { $(".new_tooltip_hover.stat_tooltip_hover").remove();});
+    
+    });
+    
+    var _mfq = _mfq || [];
+    (function() {
+      var mf = document.createElement("script"); mf.type = "text/javascript"; mf.async = true;
+      mf.src = "//cdn.mouseflow.com/projects/9990dafc-96b7-4aca-82e7-10d1b0a0c4c8.js";
+      document.getElementsByTagName("head")[0].appendChild(mf);
+    })();
+  //]]>
+</script>
+
+</div>
+
+<script>
+  //<![CDATA[
+    $(document).ready(function(){
+      page = $("#current_page").text();
+      poll_url("/chat/sessions/64544/with_js_error?err=false&page=" + page);
+    });
+  //]]>
+</script>
+
+
+
+<div class='chat_load'>
+<div class='chat_overlay'></div>
+<div class='chat_loading'>
+<div class='chat_load_img'></div>
+<div class='chat_load_text'>&nbsp; Loading...</div>
+</div>
+</div>
+<script type="text/javascript">if (typeof NREUMQ !== "undefined") { if (!NREUMQ.f) { NREUMQ.f=function() {
+NREUMQ.push(["load",new Date().getTime()]);
+var e=document.createElement("script");
+e.type="text/javascript";
+e.src=(("http:"===document.location.protocol)?"http:":"https:") + "//" +
+  "js-agent.newrelic.com/nr-100.js";
+document.body.appendChild(e);
+if(NREUMQ.a)NREUMQ.a();
+};
+NREUMQ.a=window.onload;window.onload=NREUMQ.f;
+};
+NREUMQ.push(["nrfj","beacon-1.newrelic.com","a845bf47bf","764837","dF4PEBFaDVpTFxtUWFZFThcGRhJfWQtHGENfXhY=",0,358,new Date().getTime(),"","","","",""]);}</script></body>
+</html>

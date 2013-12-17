@@ -23,12 +23,6 @@
 	<% end %>
 </p>
 <p>
-	<% if user_signed_in? %>
-		<%= link_to "Edit", "/businesses/#{@business.id}/edit" %>
-	<% end %>
-
-	<% if current_user.try(:admin?) %>
-		|| <%= link_to "Remove", "/businesses/#{@business.id}/delete" %>
-	<% end %>
+    <%= edit_business_link @business %>
 </p>
  

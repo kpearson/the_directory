@@ -1,5 +1,6 @@
 class BusinessesController < ApplicationController
 	before_action :authenticate_user!, :only => [:new, :create]
+	before_action :authorize_user, only: [:edit, :update] 
 	def index
 		@businesses = Business.all
 		@categories = Category.all
@@ -9,28 +10,28 @@ class BusinessesController < ApplicationController
 		@business = Business.find(params[:id])
 	end
 
-	def new
-		@business = Business.new
-		@category = Category.new
-	end
+# 	def new
+# 		@business = Business.new
+# 		@category = Category.new
+# 	end
 
-	def create
-		@business = Business.new(business_params)
-		if @business.save
-			redirect_to "/business/#{@business.id}"
-		else
-			render :new
-		end
-	end
+# 	def create
+# 		@business = Business.new(business_params)
+# 		if @business.save
+# 			redirect_to "/business/#{@business.id}"
+# 		else
+# 			render :new
+# 		end
+# 	end
 
 	def edit
-		@business = Business.find(params[:id])
+# 		@business = Business.find(params[:id])
 		@category = Business.find(params[:id])
 		@categories = Category.all
 	end
 
 	def update
-		@business = Business.find(params[:id])
+# 		@business = Business.find(params[:id])
 		if @business.update(business_params)
 			redirect_to "/businesses/#{@business.id}"
 		else
@@ -54,9 +55,15 @@ class BusinessesController < ApplicationController
 	end
 
 	private
-
-	def business_params
-		params.require(:business).permit(:name, :suite, :occupied, :user_id, :building_id, :discription, :phone_num, :web_site)
-	end
+        def authorize_user
+            @business = Business.find(params[:id])
+            unless @business.user == current_user
+              unauthorized_access
+            end
+        end
+        
+    	def business_params
+    		params.require(:business).permit(:name, :suite, :occupied, :user_id, :building_id, :discription, :phone_num, :web_site, category_ids: [])
+    	end
 
 end
